@@ -1,3 +1,4 @@
+// feature: histórico de cadastros com localStorage
 (function (ONG) {
 
     const CHAVE = 'ong_cadastros';
