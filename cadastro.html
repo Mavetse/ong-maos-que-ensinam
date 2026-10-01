@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mãos que Ensinam - Cadastro </title>
+    <style>
+        :root {
+            --cor-primaria: #1f6f76;
+            --cor-primaria-hover: #17565b;
+            --cor-primaria-active: #0f3f43;
+            --cor-destaque: #e8736f;
+            --cor-neutra-escura: #333333;
+            --cor-neutra-media: #898c8d;
+            --cor-neutra-clara: #f4f4f4;
+            --cor-texto-claro: rgb(247, 245, 245);
+            --cor-branco: #ffffff;
+            --cor-sombra: rgba(0, 0, 0, 0.1);
+            --cor-valido: #2e7d32;
+            --cor-erro: #c62828;
+
+            --fonte-pequena: 0.875rem;
+            --fonte-base: 1rem;
+            --fonte-media: 1.25rem;
+            --fonte-grande: 1.5rem;
+            --fonte-titulo: 2rem;
+
+            --espaco-1: 0.5rem;
+            --espaco-2: 1rem;
+            --espaco-3: 1.5rem;
+            --espaco-4: 2rem;
+            --espaco-5: 3rem;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: var(--fonte-base);
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-neutra-clara);
+        }
+        nav a {
+            color: var(--cor-branco);
+            text-decoration: none;
+            margin: 0 var(--espaco-2);
+        }
+        h1 {
+            font-size: var(--fonte-titulo);
+        }
+        h2 {
+            font-size: var(--fonte-grande);
+        }
+        h3 {
+            font-size: var(--fonte-media);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--espaco-2);
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto-claro);
+            padding: var(--espaco-3) 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+
+        .menu {
+            width: 100%;
+        }
+        .menu-toggle {
+            display: none;
+        }
+        .menu-icone {
+            display: block;
+            font-size: 2rem;
+            color: var(--cor-branco);
+            cursor: pointer;
+            text-align: center;
+        }
+        .menu-lista {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none;
+            flex-direction: column;
+            text-align: center;
+        }
+        .menu-toggle:checked ~ .menu-lista {
+            display: flex;
+        }
+        .menu-lista a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--cor-branco);
+            text-decoration: none;
+        }
+        .menu-lista a:hover,
+        .menu-lista a:focus {
+            text-decoration: underline;
+        }
+        .submenu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: var(--cor-branco);
+            border-radius: 8px;
+            box-shadow: 0 0 10px var(--cor-sombra);
+        }
+        fieldset {
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 8px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        input,
+        select,
+        textarea {
+            width: 100%;
+            max-width: 400px;
+            padding: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 1rem;
+            border: 2px solid var(--cor-neutra-media);
+            border-radius: 6px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 0 3px rgba(31, 111, 118, 0.25);
+        }
+        input:user-valid,
+        select:user-valid,
+        textarea:user-valid {
+            border-color: var(--cor-valido);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+        input:user-invalid,
+        select:user-invalid,
+        textarea:user-invalid {
+            border-color: var(--cor-erro);
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.2);
+        }
+
+        button {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+            border: 2px solid var(--cor-primaria);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+        }
+        button:hover {
+            background-color: var(--cor-primaria-hover);
+            border-color: var(--cor-primaria-hover);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+        button:focus-visible {
+            outline: 3px solid var(--cor-destaque);
+            outline-offset: 3px;
+        }
+        button:active {
+            background-color: var(--cor-primaria-active);
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+        button:disabled {
+            background-color: var(--cor-neutra-media);
+            border-color: var(--cor-neutra-media);
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.7;
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--fonte-pequena);
+            padding: 10px 0;
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+        }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--espaco-2);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--espaco-2);
+        }
+        .grade > section {
+            max-width: none;
+            margin: var(--espaco-2) 0;
+        }
+        .bloco-cadastro {
+            grid-column: span 12;
+        }
+
+        @media (min-width: 480px) {
+            .grade {
+                gap: var(--espaco-3);
+                padding: 0 var(--espaco-3);
+            }
+        }
+        @media (min-width: 768px) {
+            .bloco-cadastro {
+                grid-column: 2 / span 10;
+            }
+            .menu-icone {
+                display: none;
+            }
+            .menu-lista {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .tem-submenu {
+                position: relative;
+            }
+            .submenu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: 180px;
+                background-color: var(--cor-primaria);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                text-align: left;
+            }
+            .tem-submenu:hover .submenu,
+            .tem-submenu:focus-within .submenu {
+                display: block;
+            }
+        }
+        @media (min-width: 1024px) {
+            .bloco-cadastro {
+                grid-column: 3 / span 8;
+            }
+        }
+        @media (min-width: 1280px) {
+            .grade {
+                max-width: 1280px;
+                gap: var(--espaco-4);
+            }
+        }
+        @media (min-width: 1600px) {
+            .grade {
+                max-width: 1500px;
+            }
+            body {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="cadastro.html">Cadastro</a>
+    </nav>
+    <h1> Mãos que Ensinam </h1>
+</header>
+
+<section id="cadastro">
+    <h2> Cadastro </h2>
+    <p> Preencha os dados abaixo para participar da ONG como beneficiário ou voluntário. Todos os campos são obrigatórios. </p>
+
+    <form action="/enviar" method="POST">
+        <fieldset>
+            <legend> Dados pessoais </legend>
+
+            <label for="nome"> Nome completo: </label>
+            <input type="text" name="nome" id="nome" autocomplete="name" required>
+
+            <label for="cpf"> CPF: </label>
+            <input type="number" name="cpf" id="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" title="Digite seu CPF no formato 000.000.000-00" autocomplete="off" required>
+
+            <label for="email"> E-mail: </label>
+            <input type="email" name="email" id="email" autocomplete="email" required>
+
+            <label for="telefone"> Telefone: </label>
+        <input type="tel" name="telefone" id="telefone" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(00) 00000-0000" title="Digite seu número aqui" autocomplete="tel" required>
+
+            <label for="nascimento"> Data de nascimento: </label>
+            <input type="date" name="nascimento" id="nascimento" autocomplete="bday" required>
+        </fieldset>
+        <fieldset>
+            <legend> Endereço </legend>
+
+            <label for="endereco"> Endereço (rua e número): </label>
+            <input type="text" name="endereco" id="endereco" autocomplete="street-address" required>
+
+            <label for="cidade"> Cidade: </label>
+            <input type="text" name="cidade" id="cidade" autocomplete="address-level2" required>
+
+            <label for="estado"> Estado: </label>
+            <select name="estado" id="estado" autocomplete="address-level1" required>
+                <option value="">Selecione o estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+            <label for="cep"> CEP: </label>
+            <input type="number" name="cep" id="cep" pattern="\d{5}-\d{3}" placeholder="00000-000" title="Digite seu CEP no formato 00000-000" autocomplete="postal-code" required>
+        </fieldset>
+        <fieldset>
+            <legend> Como você quer participar </legend>
+
+            <label for="perfil"> Perfil: </label>
+            <select name="perfil" id="perfil" required>
+                <option value="">Selecione uma opção</option>
+                <option value="beneficiario">Quero receber apoio educacional</option>
+                <option value="voluntario">Quero ser voluntário</option>
+                <option value="doador">Quero fazer uma doação</option>
+            </select>
+
+            <label for="mensagem"> Registro sobre a sua situação: </label>
+            <textarea name="mensagem" id="mensagem" rows="4" required></textarea>
+        </fieldset>
+
+        <button type="submit"> Enviar cadastro </button>
+    </form>
+</section>
+
+<footer>
+    <p> @ 2026 Mãos que Ensinam. Todos os direitos reservados. </p>
+</footer>
+</body>
+</html>
