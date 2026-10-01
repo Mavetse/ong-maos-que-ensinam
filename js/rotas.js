@@ -1,3 +1,4 @@
+// feature: roteador SPA com templates
 (function (ONG) {
 
     const app = document.getElementById('app');
