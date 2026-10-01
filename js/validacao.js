@@ -1,3 +1,4 @@
+// feature: validação de formulário com RegEx e mensagens no DOM
 (function (ONG) {
 
     function cpfValido(cpf) {
