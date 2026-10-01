@@ -81,7 +81,7 @@
 const btnTema = document.getElementById('btn-tema');
 
 if (btnTema) {
-    // Aplica o tema salvo
+   
     if (localStorage.getItem('tema') === 'escuro') {
         document.documentElement.classList.add('dark-mode');
         btnTema.textContent = '☀️ Modo Claro';
