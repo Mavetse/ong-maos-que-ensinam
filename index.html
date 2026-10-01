@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title> Mãos que Ensinam </title>
+</head>
+<body>
+
+<header>
+    <nav class="menu">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-icone" aria-label="Abrir menu">&#9776;</label>
+        <ul class="menu-lista">
+            <li><a href="#/inicio">Início</a></li>
+            <li class="tem-submenu">
+                <a href="#/projetos">Como ajudar</a>
+                <ul class="submenu">
+                    <li><a href="#/doacoes">Doações</a></li>
+                    <li><a href="#/voluntariado">Voluntariado</a></li>
+                </ul>
+            </li>
+            <li><a href="#/cadastro">Cadastro</a></li>
+        </ul>
+    </nav>
+    <h1> ONG Beneficente </h1>
+</header>
+
+<main id="app" class="grade"></main>
+
+<template id="rota-inicio">
+    <section class="bloco-institucional">
+        <h2> Mãos que Ensinam </h2>
+
+        <img src="imagens/ong.jpg.jpg" alt="Várias mãos levantadas, simbolizando participação e solidariedade" style="max-width: 100%; height: auto;">
+
+        <h3> Quem somos e nossos projetos </h3>
+        <p> Acreditamos que a educação é um direito de todos, não um privilégio de poucos. Nascemos da constatação de que milhares de pessoas, crianças, jovens e adultos, ainda não têm acesso à escolaridade básica, seja por falta de estrutura, condições financeiras, distância geográfica ou outras barreiras sociais. </p>
+        <p> Somos uma organização não governamental dedicada a levar educação a quem mais precisa. Atuamos oferecendo apoio pedagógico, alfabetização, reforço escolar e programas de inclusão educacional, sempre com o objetivo de transformar realidades através do conhecimento. </p>
+        <p> Nossa missão é garantir que nenhuma pessoa fique para trás por não ter tido a oportunidade de aprender a ler, escrever ou desenvolver as habilidades necessárias para construir um futuro melhor. </p>
+        <p> Nossa visão é a de uma sociedade mais justa e igualitária, onde a educação de qualidade chegue a todos os cantos, independentemente da condição social, econômica ou geográfica. </p>
+
+        <h3> Nossos Valores </h3>
+        <ul>
+            <li>Igualdade de oportunidades</li>
+            <li>Respeito à dignidade humana</li>
+            <li>Compromisso com a transformação social</li>
+            <li>Transparência e responsabilidade</li>
+            <li>Trabalho colaborativo com comunidades</li>
+        </ul>
+    </section>
+
+    <section id="Contato" class="bloco-contato">
+        <h2> Fale com a gente </h2>
+
+        <address class="contato-info">
+            <p>E-mail: <a href="mailto:contato@maosqueensinam.org">contato@maosqueensinam.org</a></p>
+            <p>Telefone: <a href="tel:+5511912345678">(11) 91234-5678</a></p>
+        </address>
+
+        <form action="/enviar" method="POST">
+            <fieldset>
+                <legend> Envie sua mensagem </legend>
+
+                <label for="nome"> Nome: </label>
+                <input type="text" name="nome" id="nome" autocomplete="name" required>
+
+                <label for="email"> E-mail: </label>
+                <input type="email" name="email" id="email" autocomplete="email" required>
+
+                <label for="mensagem"> Mensagem: </label>
+                <textarea name="mensagem" id="mensagem" rows="4" required></textarea>
+
+                <button type="submit"> Enviar mensagem </button>
+            </fieldset>
+        </form>
+    </section>
+</template>
+
+<template id="rota-projetos">
+    <section class="bloco-projetos">
+        <h2 id="titulo-projetos"></h2>
+        <div id="lista-projetos" class="lista-projetos"></div>
+    </section>
+</template>
+
+<template id="rota-cadastro">
+    <section id="cadastro" class="bloco-cadastro">
+        <h2> Cadastro </h2>
+        <p> Preencha os dados abaixo para participar da ONG como beneficiário ou voluntário. Todos os campos são obrigatórios. </p>
+
+        <form action="/enviar" method="POST">
+            <fieldset>
+                <legend> Dados pessoais </legend>
+
+                <label for="nome"> Nome completo: </label>
+                <input type="text" name="nome" id="nome" autocomplete="name" required>
+
+                <label for="cpf"> CPF: </label>
+                <input type="text" name="cpf" id="cpf" inputmode="numeric" maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" title="Digite seu CPF no formato 000.000.000-00" autocomplete="off" required>
+
+                <label for="email"> E-mail: </label>
+                <input type="email" name="email" id="email" autocomplete="email" required>
+
+                <label for="telefone"> Telefone: </label>
+                <input type="tel" name="telefone" id="telefone" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(00) 00000-0000" title="Digite seu telefone no formato (00) 00000-0000" autocomplete="tel" required>
+
+                <label for="nascimento"> Data de nascimento: </label>
+                <input type="date" name="nascimento" id="nascimento" autocomplete="bday" required>
+            </fieldset>
+
+            <fieldset>
+                <legend> Endereço </legend>
+
+                <label for="endereco"> Endereço (rua e número): </label>
+                <input type="text" name="endereco" id="endereco" autocomplete="street-address" required>
+
+                <label for="cidade"> Cidade: </label>
+                <input type="text" name="cidade" id="cidade" autocomplete="address-level2" required>
+
+                <label for="estado"> Estado: </label>
+                <select name="estado" id="estado" autocomplete="address-level1" required>
+                    <option value="">Selecione o estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+
+                <label for="cep"> CEP: </label>
+                <input type="text" name="cep" id="cep" inputmode="numeric" maxlength="9" pattern="\d{5}-\d{3}" placeholder="00000-000" title="Digite seu CEP no formato 00000-000" autocomplete="postal-code" required>
+            </fieldset>
+
+            <fieldset>
+                <legend> Como você quer participar </legend>
+
+                <label for="perfil"> Perfil: </label>
+                <select name="perfil" id="perfil" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="beneficiario">Quero receber apoio educacional</option>
+                    <option value="voluntario">Quero ser voluntário</option>
+                    <option value="doador">Quero fazer uma doação</option>
+                </select>
+
+                <label for="mensagem"> Registro sobre a sua situação: </label>
+                <textarea name="mensagem" id="mensagem" rows="4" required></textarea>
+            </fieldset>
+
+            <button type="submit"> Enviar cadastro </button>
+        </form>
+
+        <h3> Cadastros enviados neste navegador </h3>
+        <ul id="historico-cadastros"></ul>
+        <button type="button" id="limpar-historico"> Limpar histórico </button>
+    </section>
+</template>
+
+<footer>
+    <p> @ 2026 Mãos que Ensinam. Todos os direitos reservados. </p>
+</footer>
+
+<script src="js/mascaras.js"></script>
+<script src="js/validacao.js"></script>
+<script src="js/armazenamento.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/rotas.js"></script>
+<script src="js/script1.js"></script>
+</body>
+</html>
